@@ -1,18 +1,15 @@
 
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.Layouts;
+
 
 /**
  * Madder class: MadderController
- * This class is used to define the Madder Controller for the Unity Input System.
+ * This class is used to define the Madder Controller
  * This class should not be altered.
  */
 
 
-[InputControlLayout(displayName = "MadderController", stateType = typeof(MadderControllerState))]
-public class MadderController : InputDevice
+public class MadderController
 {
     // Define controls
 
@@ -26,12 +23,7 @@ public class MadderController : InputDevice
 
     protected override void FinishSetup()
     {
-        joystick = GetChildControl<Vector2Control>("joystick");
-        triangleButton = GetChildControl<ButtonControl>("triangle");
-        circleButton = GetChildControl<ButtonControl>("circle");
-        plusButton = GetChildControl<ButtonControl>("plus");
-
-        base.FinishSetup();
+        //TODO: Add Rewired support
     }
 
     public static MadderController current { get; private set; }

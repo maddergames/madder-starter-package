@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 /**
@@ -34,16 +33,14 @@ public class MadderControllerManager : MonoBehaviour
     /**
      * CreateController
      * This function is used to create a new Madder controller.
-     * If using the InputSystem, this function will register a new MadderController input device with the InputSystem.
      * @param string gamername
      * @return MadderController
      */
     public MadderController CreateController(string gamername)
     {
-        var device = InputSystem.AddDevice<MadderController>();
-
-        controllers[gamername] = device;
-        return device;
+        //TODO: Add Rewired support. set return value to corresponding controller.
+        controllers[gamername] = gamername;
+        return gamername;
     }
 
 
@@ -62,14 +59,13 @@ public class MadderControllerManager : MonoBehaviour
     /**
      * RemoveController
      * This function is used to remove a Madder controller.
-     * If using the InputSystem, this function will remove the MadderController input device from the InputSystem.
      * @param string gamername
      */
     public void RemoveController(string gamername)
     {
         if (controllers.TryGetValue(gamername, out var device))
         {
-            InputSystem.RemoveDevice(device);
+            //TODO: Add Rewired support. Remove the Rewired controller.
             controllers.Remove(gamername);
         }
     }
@@ -77,13 +73,13 @@ public class MadderControllerManager : MonoBehaviour
     /**
      * OnDestroy
      * This function is called when the object is destroyed.
-     * This function is used to remove all Madder controllers from the InputSystem.
+     * This function is used to remove all Madder controllers
      */
     private void OnDestroy()
     {
         foreach (var controller in controllers.Values)
         {
-            InputSystem.RemoveDevice(controller);
+            //TODO: Add Rewired support. Remove the Rewired controller.
         }
         controllers.Clear();
     }

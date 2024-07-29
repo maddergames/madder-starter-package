@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
 
 
 /**
@@ -99,9 +98,6 @@ public class MadderManager : MonoBehaviour
         MadderControllerState controllerState = JsonUtility.FromJson<MadderControllerState>(jsonControllerState);
         // Retrieve the corresponding input device. The controller name is used as the device name, and is always unique
         MadderController controller = MadderControllerManager.Instance.GetController(controllerState.name);
-
-        //Update the input device with the received data
-        InputSystem.QueueStateEvent(controller, controllerState);
 
         //Trigger events listening for OnUpdateMadderControllerState, for example to move a playerObject
         onUpdateMadderControllerState?.Invoke(controllerState.name, controllerState);
